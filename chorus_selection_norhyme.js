@@ -4,9 +4,8 @@ let fs = require('fs');
 let vovel_letters_big = ['E','Y','U','I','O','A','У','Е','Ы','А','О','Э','Я','И','Ю','Ё'];
 let vovel_letters_small = ['e','y','u','i','o','a','у','е','ы','а','о','э','я','и','ю','ё'];
 
-const  vovel_pattern = (inp) => {
-    var outp = [];
-    //console.log(inp);
+const vovel_pattern = (inp) => {
+    var outp = "";
     for(const symb of inp){
         if (vovel_letters_small.includes(symb) 
         || vovel_letters_big.includes(symb) 
@@ -37,6 +36,8 @@ const search = (input) => {
         var currentSongRating = 0; 
 
 
+        var curRelMassive = []
+
         //определяем максимальное количество строк, в которое гарантированно укладываются и припев песни и введенное четверостишие
         var lines_max_count;
         if (inputVovPattLines.length>songVovPattLines.length)
@@ -51,13 +52,19 @@ const search = (input) => {
             currentLineRating = Math.sqrt(1  - Math.abs((inputVovPattLines[i].length -songVovPattLines[i].length )/inputVovPattLines[i].length ));
 
             currentSongRating += currentLineRating;
-
+            curRelMassive.push(currentLineRating);
         }            
 
         //если новая песня релевантнее прежней, то теперь она самая релевантной
-        if (currentSongRating>maxRelevantSongRating){
+        if (Math.round(currentSongRating * 100)>Math.round(maxRelevantSongRating * 100)){
             maxRelevantSong = song;
+            maxRelevantSongRating = currentSongRating;
+            song.relMassive = curRelMassive;
+            song.songRating = currentSongRating;
         }
+
+        if(song.name == "Ковер-вертолет")
+        console.log ("Вертолет currentSongRating = "+ currentSongRating +", curRelMassive = "+curRelMassive+", maxRelevantSongRating = "+maxRelevantSongRating);
 
     }
 
