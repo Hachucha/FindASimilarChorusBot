@@ -4,16 +4,21 @@ const { search } = require('./chorus_selection_norhyme')
 const token = '5454680334:AAEqIe9TTTGua40oE2FJKfmlw8HuZ_eQzeg'
 const bot = new TelegramApi(token, {polling: true})
 
+const errorMsg = (chatId) =>{
+    bot.sendMessage(chatId, "Извините, что-то пошло не так.");
+}
+
 const responseSearch = async (chatId, text) => {
     let song = search(text);
 
     let songName;
 
     if(Object.keys(song).length === 0){
-        bot.sendMessage("Извините, что-то пошло не так.");
+        errorMsg(chatId);
+        return;
     }
 
-    if(song.name = ""){
+    if(song.singerAndName == ""){
         songName = song.singer + " - " + song.name;
     }
     else{
