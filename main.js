@@ -4,10 +4,6 @@ const { search } = require('./chorus_selection_norhyme')
 const token = '5454680334:AAEqIe9TTTGua40oE2FJKfmlw8HuZ_eQzeg'
 const bot = new TelegramApi(token, {polling: true)
 
-if(bot.isPolling()) {
-            await bot.stopPolling();
-}
-
 const errorMsg = (chatId) =>{
     bot.sendMessage(chatId, "Извините, что-то пошло не так.");
 }
@@ -33,6 +29,10 @@ const responseSearch = async (chatId, text) => {
 }
 
 const start = async () => {
+
+    if(bot.isPolling()) {
+         await bot.stopPolling();
+    }
 
     bot.setMyCommands([
         {command: '/start', description: 'Начать использовать бота.'},
