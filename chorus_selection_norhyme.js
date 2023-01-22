@@ -49,11 +49,14 @@ const search = (input) => {
 
         //Сравниваем количество слогов в соответствующих строках 
         for (let i=0; i<lines_max_count; i++){
-            currentLineRating = Math.sqrt(1  - Math.abs((inputVovPattLines[i].length -songVovPattLines[i].length )/inputVovPattLines[i].length ));
+            currentLineRating = 1  - Math.abs((inputVovPattLines[i].length -songVovPattLines[i].length )/inputVovPattLines[i].length );
 
             currentSongRating += currentLineRating;
             curRelMassive.push(currentLineRating);
         }            
+
+        if(isNaN(currentSongRating))
+        console.log (song.name + ", currentSongRating = "+ currentSongRating +", curRelMassive = "+curRelMassive+", maxRelevantSongRating = "+maxRelevantSongRating);
 
         //если новая песня релевантнее прежней, то теперь она самая релевантной
         if (Math.round(currentSongRating * 100)>Math.round(maxRelevantSongRating * 100)){
@@ -63,9 +66,7 @@ const search = (input) => {
             song.songRating = currentSongRating;
         }
 
-        if(song.name == "Ковер-вертолет")
-        console.log ("Вертолет currentSongRating = "+ currentSongRating +", curRelMassive = "+curRelMassive+", maxRelevantSongRating = "+maxRelevantSongRating);
-
+      
     }
 
     return maxRelevantSong;
