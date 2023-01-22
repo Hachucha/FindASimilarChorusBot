@@ -2,7 +2,11 @@ const TelegramApi = require('node-telegram-bot-api')
 const { search } = require('./chorus_selection_norhyme')
 
 const token = '5454680334:AAEqIe9TTTGua40oE2FJKfmlw8HuZ_eQzeg'
-const bot = new TelegramApi(token, {polling: true})
+const bot = new TelegramApi(token, {polling: true)
+
+if(bot.isPolling()) {
+            await bot.stopPolling();
+}
 
 const errorMsg = (chatId) =>{
     bot.sendMessage(chatId, "Извините, что-то пошло не так.");
