@@ -25,7 +25,9 @@ const responseSearch = async (chatId, text) => {
         songName = song.singerAndName;
     }
 
-    bot.sendMessage(chatId, `Максимально подходящая песня из нашей базы: `+songName+".\nВот ее припев:\n\n"+song.chorus);
+    song.chorus = song.chorus.replaceAll("\n ", "\n");
+
+    bot.sendMessage(chatId, `Максимально подходящая песня из нашей базы: `+songName+".\n\nВот ее припев:\n\n"+song.chorus);
 }
 
 const start = async () => {
@@ -53,7 +55,7 @@ const start = async () => {
 
     })
 
-   
+    //await bot.stopPolling();
 }
 
 start()
