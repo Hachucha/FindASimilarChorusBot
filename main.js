@@ -50,7 +50,7 @@ const start = async () => {
             }
             responseSearch(chatId, text); 
         } catch (e) {
-            return bot.sendMessage(chatId, 'Произошла какая то ошибочка!)');
+            return errorMsg(chatId);
         }
 
     })
