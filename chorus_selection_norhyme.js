@@ -66,7 +66,9 @@ const search = (input) => {
             song.songRating = currentSongRating;
         }
 
-      
+        if(song.name == "Ковер-вертолет")
+        console.log ("Вертолет currentSongRating = "+ currentSongRating +", curRelMassive = "+curRelMassive+", maxRelevantSongRating = "+maxRelevantSongRating);
+
     }
 
     return maxRelevantSong;
