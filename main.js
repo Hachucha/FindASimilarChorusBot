@@ -25,7 +25,7 @@ const responseSearch = async (chatId, text) => {
         songName = song.singerAndName;
     }
 
-    song.chorus = song.chorus.replaceAll("\n ", "\n");
+    //song.chorus = song.chorus.replaceAll("\n ", "\n");
 
     bot.sendMessage(chatId, `Максимально подходящая песня из нашей базы: `+songName+".\n\nВот ее припев:\n\n"+song.chorus);
 }
