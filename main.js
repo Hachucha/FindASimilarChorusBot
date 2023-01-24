@@ -25,7 +25,7 @@ const responseSearch = async (chatId, text) => {
         songName = song.singerAndName;
     }
 
-    //song.chorus = song.chorus.replaceAll("\n ", "\n");
+    song.chorus = song.chorus.replaceAll("\n ", "\n");
 
     bot.sendMessage(chatId, `Максимально подходящая песня из нашей базы: `+songName+".\n\nВот ее припев:\n\n"+song.chorus);
 }
@@ -37,12 +37,14 @@ const start = async () => {
     }
 
     bot.setMyCommands([
-        {command: '/start', description: 'Начать использовать бота.'},
+       // {command: '/start', description: 'Начать использовать бота.'},
     ])
 
     bot.on('message', async msg => {
         const text = msg.text;
         const chatId = msg.chat.id;
+
+        //console.log(chatId);
 
         try {
             if (text === '/start') {
