@@ -36,7 +36,7 @@ const search = (input) => {
         var currentSongRating = 0; 
 
 
-        var curRelMassive = []
+        var curRelMassive = []//нужен для дебага
 
         //определяем максимальное количество строк, в которое гарантированно укладываются и припев песни и введенное четверостишие
         var lines_max_count;
@@ -55,9 +55,6 @@ const search = (input) => {
             curRelMassive.push(currentLineRating);
         }            
 
-        if(isNaN(currentSongRating))
-        console.log (song.name + ", currentSongRating = "+ currentSongRating +", curRelMassive = "+curRelMassive+", maxRelevantSongRating = "+maxRelevantSongRating);
-
         //если новая песня релевантнее прежней, то теперь она самая релевантной
         if (Math.round(currentSongRating * 100)>Math.round(maxRelevantSongRating * 100)){
             maxRelevantSong = song;
@@ -65,10 +62,6 @@ const search = (input) => {
             song.relMassive = curRelMassive;
             song.songRating = currentSongRating;
         }
-
-        if(song.name == "Ковер-вертолет")
-        console.log ("Вертолет currentSongRating = "+ currentSongRating +", curRelMassive = "+curRelMassive+", maxRelevantSongRating = "+maxRelevantSongRating);
-
     }
 
     return maxRelevantSong;
